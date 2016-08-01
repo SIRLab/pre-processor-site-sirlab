@@ -4,7 +4,7 @@
 	| * PT-BR lang
 	========================================*/
 	
-	$l['title'] = "Site de exemplo";
-	$l['hello world'] = "Olá Mundo";
+	$title = "Site de exemplo";
+	$helloWorld = "Olá Mundo";
 	
-	?>
+?>

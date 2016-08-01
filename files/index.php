@@ -1,13 +1,13 @@
 <!DOCTYPE html>
 <html>
 	<head>
-		<title><?= $l['title'] ?></title>
+		<title><?= $title ?></title>
 		<meta charset="utf-8">
 	</head>
 	
 	<body>
 	
-		<h1><?= $l['hello world'] ?></h1>
+		<h1><?= $helloWorld ?></h1>
 	
 	</body>
 </html>

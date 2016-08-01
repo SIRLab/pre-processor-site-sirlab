@@ -4,7 +4,7 @@
 	| * EN-US lang
 	========================================*/
 	
-	$l['title'] = "Example website";
-	$l['hello world'] = "Hello World";
+	$title = "Example website";
+	$helloWorld = "Hello World";
 	
-	?>
+?>

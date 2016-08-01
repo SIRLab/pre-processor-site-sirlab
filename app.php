@@ -1,14 +1,10 @@
 <?php
-	
-
 	// Set here the primary language
-	$PRIMARY_LANG = 'pt-br';
-	
-	$l = array(); // Initialize the language array
+	const PRIMARY_LANG = 'pt-br';
 	
 	echo "===== Get all languages to be processed... =====<br><br>";
 	
-	$langFiles = FilesUtils::get_files('langs');
+	$langFiles = FilesUtils::getFiles('langs');
 	
 	echo "Languages files loaded: <b>" . implode('</b>, <b>', $langFiles) . '</b><br><br>';
 	
@@ -17,7 +13,7 @@
 	// Get all files to be processed
 	
 	$filesPath = 'files';
-	$files = FilesUtils::get_files($filesPath);
+	$files = FilesUtils::getFiles($filesPath);
 	
 	// Creates the output directory (or cleans it)
 	if (file_exists('output')) {
@@ -27,9 +23,9 @@
 	
 	// Creates the languages directory
 	foreach ($langFiles as $langFile) {
-		$langFilename = FilesUtils::get_filename($langFile);
+		$langFilename = FilesUtils::removeExtension($langFile);
 		$langDir = 'output/' . $langFilename;
-		if ($langFilename != $PRIMARY_LANG) {
+		if ($langFilename != PRIMARY_LANG) {
 			if (file_exists($langDir)) {
 				FilesUtils::deleteDir($langDir);
 			}
@@ -37,22 +33,16 @@
 		}
 	}
 	
-	// For every file...
+	// For each file...
 	foreach($files as $file) {
-		$filename = FilesUtils::get_filename($file);
+		$filename = FilesUtils::removeExtension($file);
 		echo "* Processing file: " . $file . "<br>";
 		
-		// Generates it with every lang
+		// Generates it with each lang
 		foreach ($langFiles as $langFile) {
-			$langFilename = FilesUtils::get_filename($langFile);
+			$langFilename = FilesUtils::removeExtension($langFile);
 			$langDir = 'output/' . $langFilename;
-			if ($langFilename == $PRIMARY_LANG) {
-				$langFinalPath = 'output/' . $filename . '.html';
-				$ld = '';
-			} else {
-				$langFinalPath = $langDir . '/' . $filename . '.html';
-				$ld = $langFilename . '/';
-			}
+			$langFinalPath = ($langFilename == PRIMARY_LANG ? 'output/' : $langDir . '/') . $filename . '.html';
 			echo "&nbsp;&nbsp;&nbsp;| Lang: " . $langFilename . "<br>";
 			include('langs/' . $langFile);
 			ob_start();
@@ -73,7 +63,7 @@
 		 * Returns an array that contains only the files of a directory
 		 */
 		
-		public static function get_files($path) {
+		public static function getFiles($path) {
 			return array_diff(scandir($path), array('.', '..'));
 		}
 		
@@ -81,12 +71,12 @@
 		 * Removes the extension from a filename. "file.php" => "file"
 		 */
 		
-		public static function get_filename($filename) {
+		public static function removeExtension($filename) {
 			return preg_replace('/\\.[^.\\s]{3,4}$/', '', $filename);
 		}
 	
 		/* 
-		 * Delete a directory with recursion (including the files and another dirs)
+		 * Delete a directory with recursion (including the files and another directories)
 		 * Source: http://stackoverflow.com/a/3349792
 		 */
 		
