@@ -8,6 +8,8 @@
 	<body>
 	
 		<h1><?= $helloWorld ?></h1>
+		
+		<img src="imgs/bg.jpg">
 	
 	</body>
 </html>
