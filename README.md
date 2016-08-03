@@ -2,7 +2,7 @@
 
 ## The languages
 
-Put all the language files on the `langs` folder, they are all PHP files. On every file, define the same variables, but with the respective translation. For exemple, in the `en-us.php`, you can define the variable `$helloWorld`:
+Put all the language files on the `langs` folder, they are all PHP files. On every file define the same variables but with the respective translation. For exemple, in the `en-us.php` you can define the variable `$helloWorld`:
 
     $helloWorld = "Hello World";
 	
@@ -10,7 +10,7 @@ So in the `pt-br.php`, you do the translation of the same variable:
 
     $helloWorld = "Olá Mundo";
 
-## The pre-processor
+## The preprocessor
 
 First of all, change the primary language in the line 6 of `app.php`:
 
